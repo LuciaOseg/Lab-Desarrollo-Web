@@ -74,6 +74,8 @@ function addComent(){
     $('#nombre').val('')
     $('#email').val('')
     $('#comentario').val('')
+    $(".error").css("display", "none");
+     
   } else {
 
     $(".error").css("display", "block");
@@ -94,6 +96,7 @@ $('#btn-limpiar').on('click', function(event){
     $('#nombre').val('')
     $('#email').val('')
     $('#comentario').val('')
+    $(".error").css("display", "none");
 
 })
 
