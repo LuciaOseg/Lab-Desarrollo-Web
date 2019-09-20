@@ -1,4 +1,3 @@
-
 /*
 1. Función que muestra y esconde la sección para hacer comentarios
    al hacer click el botón 'Escribe una reseña'.
@@ -6,9 +5,9 @@
    (5 puntos)
 */
 $('#escribe_reseña').on('click', function(event){
-  alert("Hello! I am an alert box!!");
 
     let $seccion_comentario= $('#seccion_comentario')
+    $seccion_comentario.removeClass('hidden')
 
 })
 
@@ -27,13 +26,23 @@ $.ajax({
     // console.log(data);
     let new_html = "";
 
-    $(data).find("comment").ecommentach(function(event) {
+    $(data).find("comment").each(function(event) {
       new_html += `
-        <h3>${$(this).find("name").text()}</h3>
+
+        <h3 class="nombre">
+        ${$(this).find("name").text()}
+        </h3>
+
+        ${$(this).find("stars").val()}
+
+
+        <h5 class="review">
+        ${$(this).find("text").text()}
+        </h5>
 
       `;
     });
-    $("#seccion_reviews").append(new_html);
+    $(".review").append(new_html);
   },
   error: function(error_msg) {
     console.log(error_msg);
@@ -47,6 +56,32 @@ $.ajax({
   (función, 35 puntos)
 */
 
+$('#btn-publicar').on('click', function(event){
+  addComent();
+})
+
+function addComent(){
+  if (($('#nombre').val() !== '') && ($('#comentario').val() !== '') ) {
+    var nombre = $('#nombre').val()
+    var newNombre = $('<h3>' + nombre + '</h3>')
+
+    var comment = $('#comentario').val()
+    var newComment = $('<h5>' + comment + '</h5>')
+
+    $(".nuevosComentarios").append(newNombre)
+    $(".nuevosComentarios").append(newComment)
+
+    $('#nombre').val('')
+    $('#email').val('')
+    $('#comentario').val('')
+  } else {
+
+    $(".error").css("display", "block");
+  }
+
+}
+
+
 
 /*
 4. Funcion que limpia el nombre, el email y el div "#comentarios" al darle
@@ -54,6 +89,13 @@ $.ajax({
    on click!
   (5 puntos)
 */
+
+$('#btn-limpiar').on('click', function(event){
+    $('#nombre').val('')
+    $('#email').val('')
+    $('#comentario').val('')
+
+})
 
 
 /*
