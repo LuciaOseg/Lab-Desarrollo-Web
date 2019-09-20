@@ -15,7 +15,7 @@
       <button id="escribe_reseña" class="button">Escribe una reseña</button>
     </div>
 
-    <section id="seccion_comentario">
+    <section class="hidden" id="seccion_comentario">
 
       <fieldset class="rating">
         <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
@@ -33,7 +33,7 @@
           <input type="text" id="email" placeholder="email">
         </div>
       </div>
-      <div id="comentario" placeholder="Escribe sobre tu experiencia" contentEditable="true"></div>
+      <input type="text" id="comentario" placeholder="Escribe sobre tu experiencia" >
       <span id="error_comment" class="error">Para poder dejar una reseña es necesario llenar el nombre y un comentario</span>
       <div class="buttons-container">
         <span class="button button-txt" id="btn-publicar">Publicar</span>
@@ -44,10 +44,14 @@
 
     <section id="seccion_reviews">
       <!-- Agregar las reviews dinamicamente aqui! -->
-        <h3>Name</h3>
-        <p>Text</p>
+      <div class="review">
 
-      <!-- <div class="stars">
+      </div>
+      <span class="nuevosComentarios">
+
+      </apan>
+
+     <!--<div class="stars">
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
