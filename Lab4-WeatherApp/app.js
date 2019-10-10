@@ -1,7 +1,10 @@
 
-const credentials = require('./credentials.js')
-const request = require('request')
+const credentials = require('./credentials');
+const request = require('request');
 
+let city = "Sabinas Coahuila";
+
+//Obtiene los datos del clima Daily
 function getWeather(lat,long) {
   request.get(`https://api.darksky.net/forecast/${credentials.DARK_SKY_SECRET_KEY}/${lat},${long}?lang=es&units=si`,
     function (error, response, body){
@@ -10,3 +13,19 @@ function getWeather(lat,long) {
     }
   );
 }
+
+//Obtiene las coordenadas geograficas de la ciudad
+function getGeo(city_name) {
+  request.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${city_name}.json?access_token=${credentials.MAPBOX_TOKEN}`,
+  function (error, response, body){
+    let jsonBody = JSON.parse(body);
+    let long = jsonBody.features[0].center[0];
+    let lat = jsonBody.features[0].center[1];
+    
+    getWeather(lat, long)
+  });
+}
+
+
+console.log(`${city.toUpperCase()}`);
+getGeo(city);
